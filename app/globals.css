@@ -1,0 +1,23 @@
+/* app/globals.css */
+
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  min-width: 320px;
+  max-width: 600px;
+  width: 100%;
+}

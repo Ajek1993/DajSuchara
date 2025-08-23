@@ -1,0 +1,37 @@
+/* app/page.module.css */
+
+.container {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.button {
+  background-color: #3b82f6; /* błękit */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #1e40af; /* ciemnoniebieski */
+}
+
+.jokeBox {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
