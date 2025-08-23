@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <main className={styles.container}>
-      <h1>Suchary</h1>
+      <h1 className={styles.header}>DajSuchara</h1>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={drawJoke} disabled={loading}>
           {loading ? "Losuję..." : "Wylosuj suchara"}
