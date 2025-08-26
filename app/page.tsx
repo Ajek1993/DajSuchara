@@ -8,12 +8,14 @@ type Joke = { id: number; question: string; answer: string };
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
+  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [joke, setJoke] = useState<Joke | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const drawJoke = async () => {
     setLoading(true);
+    setIsAnswerVisible(false);
     setError(null);
     try {
       const res = await fetch("/api/jokes", { cache: "no-store" });
@@ -42,13 +44,34 @@ export default function HomePage() {
         </button>
       </div>
 
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
+      {error && <p className={styles.joke_error}>{error}</p>}
 
       {joke && (
-        <div className={styles.jokeBox}>
-          <p style={{ margin: "8px 0", fontWeight: 600 }}>{joke.question}</p>
-          <p style={{ margin: "8px 0", color: "#555" }}>{joke.answer}</p>
-        </div>
+        <>
+          <div className={styles.jokeBox}>
+            <p
+              className={styles.joke_question}
+              onClick={() => setIsAnswerVisible(!isAnswerVisible)}
+            >
+              {joke.question}
+            </p>
+          </div>
+          <div
+            className={styles.jokeBox}
+            style={{
+              marginTop: "4px",
+              cursor: "auto",
+              display: isAnswerVisible ? "block" : "none",
+            }}
+          >
+            <p
+              className={styles.joke_answer}
+              style={{ display: isAnswerVisible ? "block" : "none" }}
+            >
+              {joke.answer}
+            </p>
+          </div>
+        </>
       )}
     </main>
   );
