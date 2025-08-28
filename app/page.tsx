@@ -30,49 +30,62 @@ export default function HomePage() {
   };
 
   return (
-    <main className={styles.container}>
-      <h1 className={styles.header}>DajSuchara</h1>
-      <div className={styles.buttons}>
-        <button className={styles.button} onClick={drawJoke} disabled={loading}>
-          {loading ? "Losuję..." : "Wylosuj suchara"}
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => router.push("/dodajsuchara")}
-        >
-          Dodaj suchara
-        </button>
-      </div>
+    <>
+      <main
+        className={styles.container}
+        style={{ filter: isAnswerVisible ? "blur(5px)" : "none" }}
+      >
+        <h1 className={styles.header}>DajSuchara</h1>
+        <div className={styles.buttons}>
+          <button
+            className={styles.button}
+            onClick={drawJoke}
+            disabled={loading}
+          >
+            {loading ? "Losuję..." : "Wylosuj suchara"}
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => router.push("/dodajsuchara")}
+          >
+            Dodaj suchara
+          </button>
+        </div>
 
-      {error && <p className={styles.joke_error}>{error}</p>}
+        {error && <p className={styles.joke_error}>{error}</p>}
 
-      {joke && (
-        <>
+        {joke && (
           <div className={styles.jokeBox}>
             <p
               className={styles.joke_question}
-              onClick={() => setIsAnswerVisible(!isAnswerVisible)}
+              onClick={() => setIsAnswerVisible(true)}
             >
               {joke.question}
             </p>
           </div>
-          <div
-            className={styles.jokeBox}
-            style={{
-              marginTop: "4px",
-              cursor: "auto",
-              display: isAnswerVisible ? "block" : "none",
-            }}
+        )}
+      </main>
+
+      {/* Modal renderowany zawsze (tylko z display: none/flex) */}
+      <div
+        className={`${styles.modalOverlay} ${
+          isAnswerVisible ? styles.show : styles.hide
+        }`}
+        onClick={() => setIsAnswerVisible(false)}
+      >
+        <div
+          className={styles.modalContent}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            className={styles.modalClose}
+            onClick={() => setIsAnswerVisible(false)}
           >
-            <p
-              className={styles.joke_answer}
-              style={{ display: isAnswerVisible ? "block" : "none" }}
-            >
-              {joke.answer}
-            </p>
-          </div>
-        </>
-      )}
-    </main>
+            &times;
+          </button>
+          <p className={styles.joke_answer}>{joke?.answer}</p>
+        </div>
+      </div>
+    </>
   );
 }

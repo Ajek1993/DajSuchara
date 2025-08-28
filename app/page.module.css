@@ -53,6 +53,53 @@
 
 .joke_answer {
   margin: 8px;
+  padding: 8px 16px;
   color: "#555";
+}
+
+/* Modal overlay - półprzezroczyste ciemne tło na cały ekran */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* domyślnie ukryty */
+.hide {
   display: none;
+  opacity: 0;
+}
+
+/* pokazany */
+.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modalClose {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
 }
