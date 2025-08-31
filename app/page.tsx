@@ -55,13 +55,11 @@ export default function HomePage() {
         {error && <p className={styles.joke_error}>{error}</p>}
 
         {joke && (
-          <div className={styles.jokeBox}>
-            <p
-              className={styles.joke_question}
-              onClick={() => setIsAnswerVisible(true)}
-            >
-              {joke.question}
-            </p>
+          <div
+            className={styles.jokeBox}
+            onClick={() => setIsAnswerVisible(true)}
+          >
+            <p className={styles.joke_question}>{joke.question}</p>
           </div>
         )}
       </main>
@@ -80,9 +78,7 @@ export default function HomePage() {
           <button
             className={styles.modalClose}
             onClick={() => setIsAnswerVisible(false)}
-          >
-            &times;
-          </button>
+          ></button>
           <p className={styles.joke_answer}>{joke?.answer}</p>
         </div>
       </div>
